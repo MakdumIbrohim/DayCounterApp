@@ -5,6 +5,7 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [date, setDate] = useState('')
 
   return (
     <>
@@ -24,6 +25,8 @@ function App() {
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
+        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+        {date && <p>Selected date: {date}</p>}
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
