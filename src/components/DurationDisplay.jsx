@@ -21,7 +21,7 @@ const DurationDisplay = ({ startDate, endDate }) => {
     const duration = calculateDuration(startDate, endDate);
 
     return (
-        <div className="text-lg font-semibold text-white bg-gray-800 p-2 rounded-md inline-block">
+        <div className="w-[80%] text-lg font-semibold text-white bg-gray-800 p-2 rounded-md inline-block">
             Durasi: {duration}
         </div>
     );

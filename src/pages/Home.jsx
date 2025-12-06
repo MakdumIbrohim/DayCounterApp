@@ -10,6 +10,7 @@ const Home = () => {
           Select a date range to calculate the number of days between two dates.
         </p>
         <DatePicker />
+        
       </div>
     </div>
   );
