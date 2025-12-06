@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function DateRangePicker() {
   const [startDate, setStartDate] = useState(null);
@@ -12,21 +12,21 @@ export default function DateRangePicker() {
         <label className="mb-2 text-gray-700 font-medium">Tanggal Awal</label>
         <DatePicker
           selected={startDate}
-          onChange={setStartDate}
+          onChange={(date) => setStartDate(date)}
           dateFormat="dd/MM/yyyy"
           placeholderText="Pilih tanggal awal"
-          className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+          className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full text-gray-900 bg-white"
         />
       </div>
-      
+
       <div className="flex flex-col w-full max-w-xs">
         <label className="mb-2 text-gray-700 font-medium">Tanggal Akhir</label>
         <DatePicker
           selected={endDate}
-          onChange={setEndDate}
+          onChange={(date) => setEndDate(date)}
           dateFormat="dd/MM/yyyy"
           placeholderText="Pilih tanggal akhir"
-          className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+          className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full text-gray-900 bg-white"
         />
       </div>
     </div>
