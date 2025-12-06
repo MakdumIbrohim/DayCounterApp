@@ -1,13 +1,16 @@
-import React from 'react';
+import React from "react";
+import Navbar from "../components/Navbar";
+import DatePicker from "../components/DateRangePicker";
 
 const Home = () => {
   return (
-    <div className="text-center mt-10">
-      <h1 className="text-4xl font-bold text-blue-600">Hello Tailwind React!</h1>
-      <h2 className="text-2xl font-semibold text-gray-700 mt-4">Subheading Example</h2>
-      <button className="mt-5 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">
-        Click Me
-      </button>
+    <div className="flex justify-center items-end w-[80%] h-auto bg-blue-500 text-white p-6 text-center absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div className="text-left">
+        <p className="mb-4">
+          Select a date range to calculate the number of days between two dates.
+        </p>
+        <DatePicker />
+      </div>
     </div>
   );
 };
