@@ -42,7 +42,7 @@ const Home = () => {
                 <p className="mb-4">
                   Pilih rentang tanggal untuk menghitung durasi antara dua tanggal.
                 </p>
-                <DatePicker />
+                <DatePicker isDarkMode={darkMode} />
               </>
             )}
             
@@ -51,7 +51,7 @@ const Home = () => {
                 <p className="mb-4">
                   Pilih tanggal lahir untuk menghitung usia Anda.
                 </p>
-                <AgeCalculator />
+                <AgeCalculator isDarkMode={darkMode} />
               </>
             )}
           </div>

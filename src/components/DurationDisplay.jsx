@@ -1,6 +1,6 @@
 import HistoryPanel from './HistoryPanel';
 
-const DurationDisplay = ({ startDate, endDate }) => {
+const DurationDisplay = ({ startDate, endDate, isDarkMode }) => {
     const calculateDuration = (start, end) => {
         if (!start || !end) return 'Pilih tanggal untuk menghitung durasi';
         const startDt = new Date(start);
@@ -19,17 +19,17 @@ const DurationDisplay = ({ startDate, endDate }) => {
 
         return result.join(', ');
     };
-    
+
     const calculateBusinessDays = (start, end) => {
         if (!start || !end) return 'Pilih tanggal untuk menghitung hari kerja';
         const startDt = new Date(start);
         const endDt = new Date(end);
-        
+
         if (endDt < startDt) return 'Tanggal akhir harus setelah tanggal awal';
-        
+
         let businessDays = 0;
         const currentDate = new Date(startDt);
-        
+
         while (currentDate <= endDt) {
             const dayOfWeek = currentDate.getDay();
             // 0 = Minggu, 6 = Sabtu
@@ -38,26 +38,29 @@ const DurationDisplay = ({ startDate, endDate }) => {
             }
             currentDate.setDate(currentDate.getDate() + 1);
         }
-        
+
         return `${businessDays} hari kerja`;
     };
 
     const { addToHistory } = HistoryPanel();
-    
+
     const duration = calculateDuration(startDate, endDate);
     const businessDays = calculateBusinessDays(startDate, endDate);
-    
+
     // Add to history when dates change
     if (startDate && endDate) {
         addToHistory(startDate, endDate, duration, businessDays);
     }
 
+    const resultBoxClassName = `text-lg font-semibold p-3 rounded-md mb-2 ${isDarkMode ? "bg-gray-700 text-white" : "bg-gray-100"
+        }`;
+
     return (
         <div className="w-full">
-            <div className="text-lg font-semibold bg-gray-100 dark:bg-gray-700 p-3 rounded-md mb-2">
+            <div className={resultBoxClassName}>
                 Durasi: {duration}
             </div>
-            <div className="text-lg font-semibold bg-gray-100 dark:bg-gray-700 p-3 rounded-md">
+            <div className={`text-lg font-semibold p-3 rounded-md ${isDarkMode ? "bg-gray-700 text-white" : "bg-gray-100"}`}>
                 Hari Kerja: {businessDays}
             </div>
         </div>
