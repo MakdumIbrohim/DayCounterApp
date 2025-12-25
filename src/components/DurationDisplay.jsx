@@ -1,3 +1,5 @@
+import HistoryPanel from './HistoryPanel';
+
 const DurationDisplay = ({ startDate, endDate }) => {
     const calculateDuration = (start, end) => {
         if (!start || !end) return 'Pilih tanggal untuk menghitung durasi';
@@ -17,12 +19,47 @@ const DurationDisplay = ({ startDate, endDate }) => {
 
         return result.join(', ');
     };
+    
+    const calculateBusinessDays = (start, end) => {
+        if (!start || !end) return 'Pilih tanggal untuk menghitung hari kerja';
+        const startDt = new Date(start);
+        const endDt = new Date(end);
+        
+        if (endDt < startDt) return 'Tanggal akhir harus setelah tanggal awal';
+        
+        let businessDays = 0;
+        const currentDate = new Date(startDt);
+        
+        while (currentDate <= endDt) {
+            const dayOfWeek = currentDate.getDay();
+            // 0 = Minggu, 6 = Sabtu
+            if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+                businessDays++;
+            }
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+        
+        return `${businessDays} hari kerja`;
+    };
 
+    const { addToHistory } = HistoryPanel();
+    
     const duration = calculateDuration(startDate, endDate);
+    const businessDays = calculateBusinessDays(startDate, endDate);
+    
+    // Add to history when dates change
+    if (startDate && endDate) {
+        addToHistory(startDate, endDate, duration, businessDays);
+    }
 
     return (
-        <div className="w-[80%] text-lg font-semibold text-white bg-gray-800 p-2 rounded-md inline-block">
-            Durasi: {duration}
+        <div className="w-full">
+            <div className="text-lg font-semibold bg-gray-100 dark:bg-gray-700 p-3 rounded-md mb-2">
+                Durasi: {duration}
+            </div>
+            <div className="text-lg font-semibold bg-gray-100 dark:bg-gray-700 p-3 rounded-md">
+                Hari Kerja: {businessDays}
+            </div>
         </div>
     );
 };
